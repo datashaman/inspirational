@@ -1,0 +1,21 @@
+version: 1.4
+
+jobs:
+    schedule:
+        cmd: cd /var/app && /usr/local/bin/php artisan schedule:run
+        time: '0 * * * * *'
+        notifyOnError:
+            - type: stdout
+              data:
+                  - stderr
+                  - stdout
+        notifyOnFailure:
+            - type: stdout
+              data:
+                  - stderr
+                  - stdout
+        notifyOnSuccess:
+            - type: stdout
+              data:
+                  - stderr
+                  - stdout

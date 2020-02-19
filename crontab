@@ -1,0 +1,5 @@
+MAILTO=""
+PATH=/usr/local/bin:/bin:/usr/bin
+
+* * * * * root cd /var/app && php artisan schedule:run > /dev/stdout 2> /dev/stderr
+

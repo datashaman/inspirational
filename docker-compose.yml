@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  officer:
+    image: funkyfuture/deck-chores:1.0-rc1
+    restart: unless-stopped
+    environment:
+      TIMEZONE: Africa/Johannesburg
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  app:
+    build: .
+    command: >
+      tail -f /dev/null
+    labels:
+      deck-chores.schedule.command: /usr/local/bin/php artisan schedule:run
+      deck-chores.schedule.interval: every minute
+      deck-chores.schedule.workdir: /var/app
+      deck-chores.inspire.command: /usr/local/bin/php artisan inspire
+      deck-chores.inspire.interval: every minute
+      deck-chores.inspire.workdir: /var/app
